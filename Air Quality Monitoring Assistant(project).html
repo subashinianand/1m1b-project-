@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Air Quality Monitoring Assistant</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+}
+
+header{
+    background:#2e8b57;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:30px auto;
+}
+
+.cards{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+}
+
+.card{
+    background:white;
+    width:220px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+.card h3{
+    color:#333;
+    margin-bottom:10px;
+}
+
+.value{
+    font-size:30px;
+    font-weight:bold;
+    color:#2e8b57;
+}
+
+.status{
+    margin-top:20px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+button{
+    background:#2e8b57;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:5px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+button:hover{
+    background:#246b45;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Air Quality Monitoring Assistant</h1>
+    <p>Real-Time Air Quality Dashboard</p>
+</header>
+
+<div class="container">
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>AQI</h3>
+            <div class="value" id="aqi">85</div>
+        </div>
+
+        <div class="card">
+            <h3>Temperature</h3>
+            <div class="value" id="temp">30°C</div>
+        </div>
+
+        <div class="card">
+            <h3>Humidity</h3>
+            <div class="value" id="humidity">65%</div>
+        </div>
+
+        <div class="card">
+            <h3>PM2.5</h3>
+            <div class="value" id="pm25">45</div>
+        </div>
+
+    </div>
+
+    <div class="status">
+        <h2>Air Quality Status</h2>
+        <h3 id="statusText">Moderate</h3>
+
+        <button onclick="refreshData()">Refresh Data</button>
+    </div>
+
+</div>
+
+<script>
+function refreshData() {
+
+    let aqi = Math.floor(Math.random() * 300);
+    let temp = Math.floor(Math.random() * 15) + 20;
+    let humidity = Math.floor(Math.random() * 50) + 30;
+    let pm25 = Math.floor(Math.random() * 100);
+
+    document.getElementById("aqi").innerText = aqi;
+    document.getElementById("temp").innerText = temp + "°C";
+    document.getElementById("humidity").innerText = humidity + "%";
+    document.getElementById("pm25").innerText = pm25;
+
+    let status;
+
+    if(aqi <= 50){
+        status = "Good";
+    }
+    else if(aqi <= 100){
+        status = "Moderate";
+    }
+    else if(aqi <= 150){
+        status = "Unhealthy for Sensitive Groups";
+    }
+    else if(aqi <= 200){
+        status = "Unhealthy";
+    }
+    else{
+        status = "Very Unhealthy";
+    }
+
+    document.getElementById("statusText").innerText = status;
+}
+</script>
+
+</body>
+</html>
